@@ -49,6 +49,11 @@ class AnalyzeResult(BaseModel):
     dtypes: dict
     target_balance: dict | None
     sample_leakage_warnings: list
+    
+@app.get("/")
+def home():
+    return {"message": "ModelSanity Lite backend is running!"}
+
 
 @app.post("/analyze", response_model=AnalyzeResult)
 async def analyze_csv(file: UploadFile = File(...), target_column: str | None = None):
